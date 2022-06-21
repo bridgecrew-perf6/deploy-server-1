@@ -52,6 +52,6 @@ const tasks = new Listr([
 
 tasks.run().catch(err => {
     console.log("\r\n");
-    console.log(err)
-    // logger.error(err.toString());
+    // console.log(err)
+    logger.error(err.toString());
 });
