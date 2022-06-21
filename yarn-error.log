@@ -1,0 +1,62 @@
+Arguments: 
+  D:\Program Files\nodejs\node.exe C:\Users\michaellu\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\michaellu\bin;D:\Program Files (x86)\VMware\VMware Workstation\bin;C:\Python39\Scripts;C:\Python39;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Python27;C:\Python27\Scripts;D:\Program Files\Python37\Scripts;D:\Program Files\Python37;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\TortoiseHg;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;D:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Git\cmd;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\michaellu\AppData\Local\Microsoft\WindowsApps;D:\Program Files (x86)\Microsoft VS Code\bin;D:\Program Files\Fiddler;C:\Users\michaellu\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Apache\maven\bin;C:\Users\michaellu\.dotnet\tools;C:\Users\michaellu\AppData\Roaming\npm;C:\sqlite
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  14.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: http://npm.grapecitydev.com/execa: unregistered users are not allowed to access package execa
+      at Request.params.callback [as _callback] (C:\Users\michaellu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66255:18)
+      at Request.self.callback (C:\Users\michaellu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129397:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (C:\Users\michaellu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130369:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (C:\Users\michaellu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130291:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (internal/streams/readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "deploy-server",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "config:generate": "node ./services/config-generator.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/CodefineCloud/deploy-server.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/CodefineCloud/deploy-server/issues"
+    },
+    "homepage": "https://github.com/CodefineCloud/deploy-server#readme",
+    "devDependencies": {
+      "execa": "^6.1.0",
+      "listr": "^0.14.3",
+      "node-color-log": "^9.0.0",
+      "progress": "^2.0.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
