@@ -1,7 +1,11 @@
-const serverConfig = require("../config.json");
-const path = require("path");
-const ProgressBar = require('progress');
-const exec = require('child_process').exec;
+import path from "path";
+import ProgressBar from "progress";
+import { exec } from "child_process";
+import server_config from "../config.js";
+
+const FILE_PROTOCOL = "file://";
+const APP_CONFIG_NAME = "server.mjs";
+const LOG_FOLDER = "logs";
 
 // {
 //     "name": "private-home",
@@ -30,15 +34,15 @@ const exec = require('child_process').exec;
 // };
 
 
-const apps = serverConfig.apps;
+const apps = server_config.apps;
 const bar = new ProgressBar('Building apps [:bar] :percent', { total: apps.length, width: 20 });
 
 let currentAppIndex = 0;
-const pm2Config = apps.map(name => {
+const pm2Config = apps.map(async name => {
     const appBasePath = path.resolve("..", name);
-    const appConfigPath = path.resolve(appBasePath, "server.json");
-    const logBasePath = path.resolve(appBasePath, "logs");
-    const appConfig = require(appConfigPath);
+    const appConfigPath = path.resolve(appBasePath, APP_CONFIG_NAME);
+    const logBasePath = path.resolve(appBasePath, LOG_FOLDER);
+    const { default: appConfig } = await import(FILE_PROTOCOL + appConfigPath);
     const cmd = `cd ${appBasePath} &&` + appConfig.command;
     exec(cmd, function(error, stdout, stderr) {
         if (!error) {

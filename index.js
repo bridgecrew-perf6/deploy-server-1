@@ -1,5 +1,5 @@
 import { execa } from 'execa';
-import Listr from 'listr';
+import { Listr } from 'listr2';
 import logger from "node-color-log";
 
 const tasks = new Listr([
@@ -7,14 +7,14 @@ const tasks = new Listr([
         title: 'Git',
         task: () => {
             return new Listr([
-                {
-                    title: 'Checking git status',
-                    task: () => execa('git', ['status', '--porcelain']).then(result => {
-                        if (result.stdout !== '') {
-                            throw new Error('Unclean working tree. Commit or stash changes first.');
-                        }
-                    })
-                },
+                // {
+                //     title: 'Checking git status',
+                //     task: () => execa('git', ['status', '--porcelain']).then(result => {
+                //         if (result.stdout !== '') {
+                //             throw new Error('Unclean working tree. Commit or stash changes first.');
+                //         }
+                //     })
+                // },
                 {
                     title: 'Checking remote history',
                     task: () => execa('git', ['rev-list', '--count', '--left-only', '@{u}...HEAD']).then(result => {
@@ -28,22 +28,25 @@ const tasks = new Listr([
     },
     {
         title: 'Install package dependencies with Yarn',
-        task: (ctx, task) => execa('yarn')
+        task: (ctx, task) => execa('yarn', ['--silent'])
             .catch(() => {
                 ctx.yarn = false;
-
-                task.skip('Yarn not available, install it via `npm install -g yarn`');
+                task.skip('Yarn not available, install it via `npm install -g yarn`'); // skip task, continue next task
             })
     },
     {
         title: 'Install package dependencies with npm',
-        enabled: ctx => ctx.yarn === false,
+        enabled: ctx => ctx.yarn === false, // enable context
         task: () => execa('npm', ['install'])
     },
     {
-        title: 'Run tests',
-        task: () => execa('npm', ['test'])
+        title: 'Generate pm2 config',
+        task: () => execa('npm', ['run', 'generate-pm2-config'])
     },
+    // {
+    //     title: 'Run tests',
+    //     task: () => execa('npm', ['test'])
+    // },
     {
         title: 'Publish package',
         task: () => execa('npm', ['publish'])

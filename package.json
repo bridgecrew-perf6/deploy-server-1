@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "config:generate": "node ./services/config-generator.js"
+    "generate-pm2-config": "node ./services/config-generator.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/CodefineCloud/deploy-server#readme",
   "devDependencies": {
     "execa": "^6.1.0",
-    "listr": "^0.14.3",
+    "listr2": "^4.0.5",
     "node-color-log": "^9.0.0",
     "progress": "^2.0.3"
   }
