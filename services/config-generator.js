@@ -1,4 +1,4 @@
-const serverConfig = require("./config.json");
+const serverConfig = require("../config.json");
 const path = require("path");
 const ProgressBar = require('progress');
 const exec = require('child_process').exec;
@@ -31,7 +31,7 @@ const exec = require('child_process').exec;
 
 
 const apps = serverConfig.apps;
-const bar = new ProgressBar('Building [:bar] :percent', { total: apps.length, width: 20 });
+const bar = new ProgressBar('Building apps [:bar] :percent', { total: apps.length, width: 20 });
 
 let currentAppIndex = 0;
 const pm2Config = apps.map(name => {
