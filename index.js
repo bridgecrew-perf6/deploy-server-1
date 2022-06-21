@@ -18,7 +18,7 @@ const tasks = new Listr([
 				{
 					title: 'Checking remote history',
 					task: () => execa('git', ['rev-list', '--count', '--left-only', '@{u}...HEAD']).then(result => {
-						if (result !== '0') {
+						if (result.stdout !== '0') {
 							throw new Error('Remote history differ. Please pull changes.');
 						}
 					})
